@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 
-function App() {
+
+const FollowMouse = () => {
 
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState({x:0, y:0})
@@ -18,6 +19,7 @@ function App() {
     }
 
     //se ejecuta cuando se desmonte el componente
+    //se ejecuta cuando se cambian las dependencias
     return () => {
       window.removeEventListener('pointermove', handleMove)
     }
@@ -48,6 +50,18 @@ function App() {
       </button>
     </>
   )
+}
+
+
+
+function App() {
+
+  return(
+    <main>
+      <FollowMouse />
+    </main>
+  )
+  
 }
 
 export default App
