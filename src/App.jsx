@@ -12,19 +12,29 @@ const FollowMouse = () => {
       const {clientX, clientY} = event
       setPosition({x: clientX, y: clientY})
     }
-
     //ejecutar solo cuando el boton este activado
     if(enabled){
       window.addEventListener('pointermove', handleMove)
     }
-
     //se ejecuta cuando se desmonte el componente
     //se ejecuta cuando se cambian las dependencias
     return () => {
       window.removeEventListener('pointermove', handleMove)
     }
-
   },[enabled])
+
+
+  //change body className
+  useEffect(() => {
+
+    document.body.classList.toggle('no-cursor', enabled)
+
+    return() => {
+      document.body.classList.remove('no-cursor')
+    }
+  }, [enabled])
+
+
 
   return (
     <>
